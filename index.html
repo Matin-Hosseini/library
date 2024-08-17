@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>this is matin hossein</h1>
+    <a href="/data">some route</a>
+
+    <script>
+      const link = document.querySelector("a");
+
+      window.onpopstate = (e) => {
+        console.log("popstat");
+      };
+
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        const href = e.target.href;
+
+        history.pushState({ page: 1 }, "", href);
+
+        fetch(href)
+          .then((res) => res.text())
+          .then((data) => {
+            const start = data.indexOf("<body>");
+            const end = data.indexOf("</body>");
+
+            const pageInfo = data.slice(start + 6, end);
+            const doc = new DOMParser().parseFromString(data, "text/xml");
+            const body = doc.querySelector("body");
+
+            document.body.innerHTML = body.innerHTML;
+          });
+      });
+    </script>
+  </body>
+</html>
