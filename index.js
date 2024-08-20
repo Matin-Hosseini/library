@@ -1,12 +1,12 @@
 const http = require("http");
-const registerController = require("./controllers/register");
+const { register } = require("./controllers/user");
 
 const hostname = "127.0.0.1";
 const port = 3000;
 
 const server = http.createServer((req, res) => {
   if (req.method === "POST" && req.url === "/api/register") {
-    registerController(req, res);
+    register(req, res);
     return;
   }
 
