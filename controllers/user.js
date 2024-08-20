@@ -1,9 +1,9 @@
 const { getDB, insertDB } = require("../utils/db");
 const parseBody = require("../utils/parseBody");
 
-const register = async (req, res) => {
-  const db = getDB();
+const db = getDB();
 
+const register = async (req, res) => {
   const body = await parseBody(req);
 
   const newUser = {
@@ -19,4 +19,27 @@ const register = async (req, res) => {
   return res.end(JSON.stringify({ msg: "new user created successfully" }));
 };
 
-module.exports = { register };
+const login = async (req, res) => {
+  const { username, password } = await parseBody(req);
+
+  const { users } = db;
+
+  const targetUser = users.find((user) => user.username === username);
+
+  if (!targetUser) {
+    res.writeHead(404, { "Content-Type": "application/json" });
+    return res.end(JSON.stringify({ err: "user not found" }));
+  }
+
+  const isPasswordMatch = targetUser.password === password;
+
+  if (!isPasswordMatch) {
+    res.writeHead(401, { "Content-Type": "application/json" });
+    return res.end(JSON.stringify({ err: "username or password is wrong" }));
+  }
+
+  res.writeHead(201, { "Content-Type": "application/json" });
+  return res.end(JSON.stringify({ msg: "User logged in", targetUser }));
+};
+
+module.exports = { register, login };
