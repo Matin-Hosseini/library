@@ -1,6 +1,6 @@
 const http = require("http");
 const { register, login, reserveBook } = require("./controllers/user");
-const { getAllBooks, addBook } = require("./controllers/book");
+const { getAllBooks, addBook, removeBook } = require("./controllers/book");
 
 const hostname = "127.0.0.1";
 const port = 3000;
@@ -24,6 +24,10 @@ const server = http.createServer((req, res) => {
   }
   if (req.method === "POST" && req.url === "/api/add-book") {
     addBook(req, res);
+    return;
+  }
+  if (req.method === "DELETE" && req.url === "/api/remove-book") {
+    removeBook(req, res);
     return;
   }
 
