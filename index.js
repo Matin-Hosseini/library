@@ -1,26 +1,16 @@
 const http = require("http");
-const fs = require("fs");
-const path = require("path");
-const getDB = require("./utils/getDB");
+const registerController = require("./controllers/register");
 
 const hostname = "127.0.0.1";
 const port = 3000;
 
 const server = http.createServer((req, res) => {
-  const db = getDB();
-
-  if (req.url === "/add-user") {
-    const newUser = { id: crypto.randomUUID(), name: "alireza", age: 55 };
-
-    db.users.push(newUser);
-
-    fs.writeFileSync(path.join(__dirname, "db.json"), JSON.stringify(db));
-
-    res.setHeader("Content-Type", "application/json");
-    return res.end(JSON.stringify(getDB()));
+  if (req.method === "POST" && req.url === "/api/register") {
+    registerController(req, res);
+    return;
   }
 
-  res.end("this is matin hosseini");
+  res.end("this is the library");
 });
 
 server.listen(port, hostname, () => {

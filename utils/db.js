@@ -8,4 +8,8 @@ const getDB = () => {
   return data;
 };
 
-module.exports = getDB;
+const insertDB = (newData) => {
+  fs.writeFileSync(path.join(__dirname, "../db.json"), JSON.stringify(newData));
+};
+
+module.exports = { getDB, insertDB };
