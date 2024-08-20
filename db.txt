@@ -1,0 +1,25 @@
+{
+  "roles": [
+    { "id": 1, "name": "USER" },
+    { "id": 2, "name": "ADMIN" },
+    { "id": 3, "name": "EMPLOYEE" }
+  ],
+
+  "users": [
+    {
+      "id": "kjfsin",
+      "name": "matin hosseini",
+      "username": "matin_hosseini",
+      "password": "09411247623",
+      "roleID": 1
+    }
+  ],
+
+  "books": [
+    { "id": "flkmklwf", "name": "صد سال تنهایی", "author": "گابریل گارسیا" }
+  ],
+
+  "reservedBooks": [
+    { "id": "fwkjefn", "userID": "kjfsin", "bookID": "flkmklwf" }
+  ]
+}
