@@ -61,4 +61,33 @@ const reserveBook = async (req, res) => {
   return res.end(JSON.stringify({ msg: "book reserved" }));
 };
 
-module.exports = { register, login, reserveBook };
+const makeAdmin = async (req, res) => {
+  const { users, roles } = db;
+
+  const { userID, newAdminID } = await parseBody(req);
+
+  const targetUser = users.find((user) => user.id === userID);
+  const adminRole = roles.find((role) => role.name === "ADMIN");
+
+  const isAdmin = targetUser.roleID === adminRole.id;
+
+  if (!isAdmin) {
+    res.writeHead(401, { "Content-Type": "application/json" });
+    return res.end(JSON.stringify({ err: "User doesn't have access" }));
+  }
+
+  const newAdmin = users.find((user) => user.id === newAdminID);
+
+  if (!newAdmin) {
+    res.writeHead(200, { "Content-Type": "application/json" });
+    return res.end(JSON.stringify({ msg: "User doesn't exist" }));
+  }
+
+  newAdmin.roleID = adminRole.id;
+  insertDB(db);
+
+  res.writeHead(200, { "Content-Type": "application/json" });
+  return res.end(JSON.stringify({ msg: "User is now admin" }));
+};
+
+module.exports = { register, login, reserveBook, makeAdmin };

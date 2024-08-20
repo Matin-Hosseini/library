@@ -1,5 +1,10 @@
 const http = require("http");
-const { register, login, reserveBook } = require("./controllers/user");
+const {
+  register,
+  login,
+  reserveBook,
+  makeAdmin,
+} = require("./controllers/user");
 const { getAllBooks, addBook, removeBook } = require("./controllers/book");
 
 const hostname = "127.0.0.1";
@@ -28,6 +33,10 @@ const server = http.createServer((req, res) => {
   }
   if (req.method === "DELETE" && req.url === "/api/remove-book") {
     removeBook(req, res);
+    return;
+  }
+  if (req.method === "PUT" && req.url === "/api/make-admin") {
+    makeAdmin(req, res);
     return;
   }
 
