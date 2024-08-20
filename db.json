@@ -1,8 +1,7 @@
 {
   "roles": [
     { "id": 1, "name": "USER" },
-    { "id": 2, "name": "ADMIN" },
-    { "id": 3, "name": "EMPLOYEE" }
+    { "id": 2, "name": "ADMIN" }
   ],
   "users": [
     {
@@ -11,18 +10,51 @@
       "username": "matin_hosseini",
       "name": "Matin Hosseini",
       "password": "09411247623"
+    },
+    {
+      "id": "eef3286b-64fd-475c-9f02-dc68c7bf06c1",
+      "roleID": 2,
+      "username": "yasaman_az",
+      "name": "Yasaman Azizinezad",
+      "password": "09411247623"
     }
   ],
   "books": [
-    { "id": "flkmklwf", "name": "صد سال تنهایی", "author": "گابریل گارسیا" },
-    { "id": "kljnnjkljklw", "name": "کشتن مرغ مینا", "author": "هارپر لی" }
-  ],
-  "reservedBooks": [
-    { "id": "fwkjefn", "userID": "kjfsin", "bookID": "flkmklwf" },
     {
-      "id": "23fff5b3-6600-45cd-98ce-d12fc1aed7d9",
-      "userID": "583ad873-47bb-4dc3-bad3-12985ad0cc3c",
-      "bookID": "kljnnjkljklw"
+      "id": "cb0d6baf-8288-4205-afdd-d6eb81d60453",
+      "name": "غرور و تعصب",
+      "author": "جین آستین"
+    },
+    {
+      "id": "4545763f-d9af-41bf-bcef-ce2ce95ebe85",
+      "name": "صد سال تنهایی",
+      "author": "گابریل گارسیا"
+    },
+    {
+      "id": "06322d91-fe47-4bb5-9f6d-88bb142320d0",
+      "name": "کشتن مرغ مینا",
+      "author": "هارپر لی"
+    },
+    {
+      "id": "464d62ad-07a5-407a-b6e5-757d446602ae",
+      "name": "۱۹۸۴",
+      "author": "جورج ارول"
+    },
+    {
+      "id": "5832cd6e-50a0-4de5-a164-a865c23cb497",
+      "name": "گتسبی بزرگ",
+      "author": "اسکات فیتز جرالد"
+    },
+    {
+      "id": "c8b5252e-b819-4099-bcf7-017e4b357cf4",
+      "name": "دراکولا",
+      "author": "برام استوکز"
+    },
+    {
+      "id": "a5b523a5-fcdc-4dc4-8d65-aff76fff9668",
+      "name": "جین ایر",
+      "author": "آرمین هدایتی"
     }
-  ]
+  ],
+  "reservedBooks": []
 }
