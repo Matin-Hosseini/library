@@ -42,4 +42,23 @@ const login = async (req, res) => {
   return res.end(JSON.stringify({ msg: "User logged in", targetUser }));
 };
 
-module.exports = { register, login };
+const reserveBook = async (req, res) => {
+  const { users, books, reservedBooks } = db;
+
+  const { userID, bookID } = await parseBody(req);
+
+  const isBookReserved = reservedBooks.some((item) => item.bookID === bookID);
+
+  if (isBookReserved) {
+    res.writeHead(405, { "Content-Type": "application/json" });
+    return res.end(JSON.stringify({ err: "Book is reserved" }));
+  }
+
+  reservedBooks.push({ id: crypto.randomUUID(), userID, bookID });
+  insertDB(db);
+
+  res.writeHead(200, { "Content-Type": "application/json" });
+  return res.end(JSON.stringify({ msg: "book reserved" }));
+};
+
+module.exports = { register, login, reserveBook };
